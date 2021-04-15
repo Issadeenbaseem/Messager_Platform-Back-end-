@@ -24,17 +24,18 @@ use App\Models\Contact;
 
 // Route::get('/contact',[ContactController::class,'index']);
 
-// Route::post('/contact',[ContactController::class,'store']);
+ //Route::put('/contacts/update/{id}',[ContactController::class,'update']);
 
 
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 Route::get('/contacts/search/{firstname}',[ContactController::class,'search']);
+Route::resource('contacts', ContactController::class);
 
 
 Route::group(['middleware' =>'auth:sanctum'],function(){
-  
-    Route::resource('contacts', ContactController::class);
+
+   // Route::resource('contacts', ContactController::class);
     Route::post('/logout',[AuthController::class,'logout']);
 
 });
